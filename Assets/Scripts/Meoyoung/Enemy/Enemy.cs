@@ -26,7 +26,6 @@ public class Enemy : MonoBehaviour
         {
             Vector3 dirVec = target.position - rigid.position;
             Vector3 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-            nextVec.y = 0;
             transform.LookAt(target.transform);
             rigid.MovePosition(rigid.position + nextVec);
             rigid.velocity = Vector3.zero;
