@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement; //플레이어가 바라보는 방향
     public float walkSpeed = 1f; //플레이어가 걷는 속도
 
+    [Header("Scanner")]
+    public Scanner scanner;
+
 
     public static PlayerController Instance { get; private set; } // Singleton 인스턴스
 
@@ -46,6 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         _idleState = gameObject.AddComponent<PlayerIdleState>();
         _walkState = gameObject.AddComponent<PlayerWalkState>();
+
+        if(scanner == null)
+            scanner = GetComponent<Scanner>();
 
         if(_rigidbody == null)
             _rigidbody = GetComponent<Rigidbody>();

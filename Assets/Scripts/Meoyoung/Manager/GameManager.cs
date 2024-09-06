@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTime > maxGameTime)
         {
-            gameTime = maxGameTime;
+            gameTime = 0;
         }
     }
 }
