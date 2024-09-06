@@ -5,6 +5,12 @@ public class Enemy : MonoBehaviour
     [Tooltip("적이 이동할 속도")]
     [SerializeField] float speed;
 
+    [Tooltip("적의 최대체력")]
+    [SerializeField] float maxHealth;
+
+    [Tooltip("적의 현재체력")]
+    [SerializeField] float health;
+
     [Tooltip("적의 회전 속도")]
     [SerializeField] float rotationSpeed = 1f;
 
@@ -16,7 +22,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        isLive = true;
         rigid = GetComponent<Rigidbody>();
     }
 
@@ -46,6 +51,15 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         target = GameManager.instance.player.GetComponent<Rigidbody>();
+        isLive = true;
+        health = maxHealth;
+    }
+
+    public void Init(SpawnData data)
+    {
+        speed = data.speed;
+        maxHealth = data.health;
+        health = data.health;
     }
 
 }

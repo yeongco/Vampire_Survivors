@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Scanner : MonoBehaviour
 {
@@ -16,13 +17,27 @@ public class Scanner : MonoBehaviour
     [Tooltip("가장 가까운 적")]
     [SerializeField] Transform nearestTarget;
 
+    [Tooltip("플레이어의 회전 속도")]
+    [SerializeField] float rotationSpeed = 2f;
+
     private void FixedUpdate()
     {
         //캐스팅 시작 위치, 원의 반지름, 캐스팅 방향(방향 없이 모든 범위를 인지할 것이기때문에 zero), 캐스팅 길이, 대상 레이어
         targets = Physics.OverlapSphere(transform.position, scanRange, targetLayer);
         nearestTarget = GetNearest();
+        if(nearestTarget != null )
+            RotationToEnemy(nearestTarget);
         /*if(nearestTarget != null )
             Debug.Log("가장 가까운 적 : " + nearestTarget.name);*/
+    }
+
+    void RotationToEnemy(Transform target)
+    {
+        //플레이어 방향으로 천천히 회전
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
     }
 
 
