@@ -8,7 +8,7 @@ public class PlayerIdleState : MonoBehaviour, IPlayerState
 
     public void OnStateEnter(PlayerController npcController)
     {
-        Debug.Log("PlayerController : Idle State 진입");
+        //Debug.Log("PlayerController : Idle State 진입");
 
         if (!_playerController)
             _playerController = npcController;

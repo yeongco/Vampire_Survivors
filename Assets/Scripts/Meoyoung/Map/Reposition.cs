@@ -15,7 +15,8 @@ public class Reposition : MonoBehaviour
     {
         if (other.CompareTag("Area")) //플레이어가 x축으로 멀어진건지 y축으로 멀어진건지 체크
         {
-            Debug.Log("Area 충돌");
+            //Debug.Log("Area 충돌");
+           //ebug.Log(transform.tag);
 
             Vector3 playerPos = GameManager.instance.player.transform.position;
             Vector3 myPos = transform.position;
@@ -25,7 +26,7 @@ public class Reposition : MonoBehaviour
 
             Vector3 playerDir = new(GameManager.instance.player.movement.x, 0f, GameManager.instance.player.movement.y);
             float dirX = 0;
-            float dirY = 0;
+            float dirY = 0; 
             if (playerDir.x < 0)
             {
                 dirX = -1;
@@ -47,22 +48,24 @@ public class Reposition : MonoBehaviour
             switch (transform.tag)
             {
                 case "Ground":
-                    //Debug.Log("Tag : Ground");
+                    Debug.Log("Tag : Ground");
                     if(diffX > diffY)
                     {
+                        Debug.Log("X축 이동");
                         transform.Translate(Vector3.right * dirX * 200);
                     }
                     else if (diffX < diffY)
                     {
+                        Debug.Log("Y축 이동");
                         Vector3 upVector = new(0, 0, 1);
                         transform.Translate(upVector * dirY * 200);
                     }
                     break;
                 case "Enemy":
-                    //Debug.Log("Tag : Enemy");
+                    Debug.Log("Tag : Enemy");
                     if (coll.enabled)
                     {
-                        Debug.Log("Moving enemy in direction: " + playerDir);
+                        //Debug.Log("Moving enemy in direction: " + playerDir);
                         transform.Translate(playerDir * 100 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)), Space.World); //플레이어가 바라보는 방향에서 다시 생성
                     }
                     break;
