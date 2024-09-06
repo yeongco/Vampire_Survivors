@@ -15,7 +15,7 @@ public class Scanner : MonoBehaviour
     [SerializeField] Collider[] targets;
 
     [Tooltip("가장 가까운 적")]
-    [SerializeField] Transform nearestTarget;
+    public Transform nearestTarget;
 
     [Tooltip("플레이어의 회전 속도")]
     [SerializeField] float rotationSpeed = 2f;

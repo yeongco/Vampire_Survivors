@@ -62,4 +62,28 @@ public class Enemy : MonoBehaviour
         health = data.health;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            health -= other.GetComponent<Bullet>().damage;
+
+            if(health > 0)
+            {
+                // Live, Hit action
+            }
+            else
+            {
+                //죽음 로직
+                Dead();
+            }
+        }
+    }
+
+    void Dead()
+    {
+        //오브젝트 풀링이기때문에 Destory하면 안 됨
+        gameObject.SetActive(false);
+    }
+
 }
