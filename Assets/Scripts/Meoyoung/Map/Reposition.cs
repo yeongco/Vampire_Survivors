@@ -63,7 +63,7 @@ public class Reposition : MonoBehaviour
                     if (coll.enabled)
                     {
                         Debug.Log("Moving enemy in direction: " + playerDir);
-                        transform.Translate(playerDir * 100 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f))); //플레이어가 바라보는 방향에서 다시 생성
+                        transform.Translate(playerDir * 100 + new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)), Space.World); //플레이어가 바라보는 방향에서 다시 생성
                     }
                     break;
             }
