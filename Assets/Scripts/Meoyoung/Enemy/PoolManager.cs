@@ -5,15 +5,15 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     //프리팹과 리스트는 1대1 구조
-    [Tooltip("프리팹을 보관할 변수")]
-    [SerializeField] GameObject[] prefabs;
+    [Tooltip("레벨별 프리팹을 보관할 변수")]
+    [SerializeField] PrefabArray[] levelArray;
 
     [Tooltip("오브젝트 풀을 구성하는 리스트")]
     [SerializeField] List<GameObject>[] pools;
 
     private void Awake()
     {
-        pools = new List<GameObject>[prefabs.Length];
+        pools = new List<GameObject>[levelArray.Length];
 
         for(int i=0; i<pools.Length; i++)
         {
@@ -44,10 +44,16 @@ public class PoolManager : MonoBehaviour
 
         if (!selectObject)
         {
-            selectObject = Instantiate(prefabs[index], transform);
+            selectObject = Instantiate(levelArray[index].monster[Random.Range(0, levelArray[index].monster.Length)], transform);
             pools[index].Add(selectObject);
         }
 
         return selectObject;
     }
+}
+
+[System.Serializable]
+public class PrefabArray
+{
+    public GameObject[] monster;
 }
