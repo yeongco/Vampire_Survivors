@@ -9,7 +9,7 @@ public class PlayerWalkState : MonoBehaviour, IPlayerState
 
     public void OnStateEnter(PlayerController npcController)
     {
-        Debug.Log("PlayerController : WalkState 진입");
+        //Debug.Log("PlayerController : WalkState 진입");
 
         if (!_playerController)
             _playerController = npcController;
